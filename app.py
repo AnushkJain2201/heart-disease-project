@@ -1,6 +1,7 @@
 import streamlit as st
 import pickle
 import numpy as np
+import sklearn
 
 # Load the trained model
 loaded_model = pickle.load(open("saved_models/log_reg.pkl", "rb"))
@@ -40,7 +41,7 @@ def main():
     restecg = st.selectbox("Resting ECG Results", ["Normal", "ST-T Wave Abnormality", "Left Ventricular Hypertrophy"])
     thalach = st.number_input("Maximum Heart Rate Achieved", min_value=0, max_value=200)
     exang = st.selectbox("Exercise Induced Angina", ["No", "Yes"])
-    oldpeak = st.number_input("ST Depression Induced by Exercise Relative to Rest", min_value=0, max_value=10)
+    oldpeak = st.number_input("ST Depression Induced by Exercise Relative to Rest", min_value=0.0, max_value=10.0, step=0.1, format="%.1f")
     slope = st.selectbox("Slope of the Peak Exercise ST Segment", ["Upsloping", "Flat", "Downsloping"])
     ca = st.number_input("Number of Major Vessels Colored by Flourosopy", min_value=0, max_value=3)
     thal = st.selectbox("Thal", ["Normal", "Fixed Defect", "Reversible Defect"])
